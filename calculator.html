@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced Calculator</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #e6e6e6;
+            font-family: Arial;
+        }
+
+        .calculator {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        #display {
+            width: 100%;
+            height: 60px;
+            font-size: 22px;
+            text-align: right;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 8px;
+            background: black;
+            color: white;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 70px);
+            gap: 10px;
+        }
+
+        button {
+            height: 60px;
+            font-size: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .num { background: #333; color: white; }
+        .op { background: orange; color: white; }
+        .equal { background: green; color: white; }
+        .clear { background: red; color: white; }
+    </style>
+</head>
+
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" value="0" disabled>
+
+    <div class="buttons">
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button class="op" onclick="addValue('/')">/</button>
+        <button class="op" onclick="addValue('*')">*</button>
+        <button class="op" onclick="addValue('-')">-</button>
+
+        <button class="num" onclick="addValue('7')">7</button>
+        <button class="num" onclick="addValue('8')">8</button>
+        <button class="num" onclick="addValue('9')">9</button>
+        <button class="op" onclick="addValue('+')">+</button>
+
+        <button class="num" onclick="addValue('4')">4</button>
+        <button class="num" onclick="addValue('5')">5</button>
+        <button class="num" onclick="addValue('6')">6</button>
+        <button class="equal" onclick="calculate()">=</button>
+
+        <button class="num" onclick="addValue('1')">1</button>
+        <button class="num" onclick="addValue('2')">2</button>
+        <button class="num" onclick="addValue('3')">3</button>
+        <button class="num" onclick="addValue('0')">0</button>
+    </div>
+</div>
+
+<script>
+// Get display
+let display = document.getElementById("display");
+
+// Function to add value
+function addValue(val) {
+    if (display.value === "0") {
+        display.value = val;
+    } else {
+        display.value += val;
+    }
+}
+
+// Function to clear display
+function clearDisplay() {
+    display.value = "0";
+    console.log("Cleared");
+}
+
+// Function to calculate result
+function calculate() {
+    try {
+        let expression = display.value;
+        let result = eval(expression);
+
+        console.log("Expression: " + expression);
+        console.log("Result: " + result);
+
+        display.value = result;
+    } catch (error) {
+        console.log("Error in calculation");
+        display.value = "Error";
+    }
+}
+</script>
+
+</body>
+</html>
